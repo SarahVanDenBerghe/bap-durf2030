@@ -107,7 +107,7 @@ const CreateProject = observer(() => {
     });
 
     // Build hook
-    var url = 'https://api.vercel.com/v1/integrations/deploy/prj_9FzkV3G1nYbDhZfUSbomI1uIi3jA/qlsToVUcvk';
+    var url = 'https://api.vercel.com/v1/integrations/deploy/prj_9FzkV3G1nYbDhZfUSbomI1uIi3jA/Mvh4NsF4r3';
 
     fetch(url, {
       headers: {
