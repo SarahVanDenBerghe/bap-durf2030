@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Header, Footer } from '../../components/Layout';
-import {
-  ProjectHeader,
-  ProjectContent,
-  ProjectFooter,
-  ProjectComments,
-} from '../../components/Project';
+import { ProjectHeader, ProjectContent, ProjectFooter, ProjectComments } from '../../components/Project';
 import RootStore from '../../stores';
 import { convertData } from '../../models/Project';
 import { convertDataUser } from '../../models/User';
@@ -24,9 +19,7 @@ const Project = observer(({ projectJSON, usersJSON }) => {
     const loadOwner = async () => {
       const currentUser = await uiStore.currentUser;
       if (project && currentUser) {
-        const projectOwner = project.owners.find(
-          (owner) => owner.id === currentUser.id
-        );
+        const projectOwner = project.owners.find((owner) => owner.id === currentUser.id);
         if (projectOwner) {
           setProjectOwner(true);
         } else {
@@ -79,17 +72,8 @@ const Project = observer(({ projectJSON, usersJSON }) => {
   return (
     <>
       <Header />
-      <ProjectHeader
-        setTab={setTab}
-        projectOwner={projectOwner}
-        project={project}
-      />
-      <ProjectContent
-        tab={tab}
-        setTab={setTab}
-        project={project}
-        users={users}
-      />
+      <ProjectHeader setTab={setTab} projectOwner={projectOwner} project={project} />
+      <ProjectContent tab={tab} setTab={setTab} project={project} users={users} />
       <ProjectFooter project={project} />
       <ProjectComments project={project} comments={project.comments} />
       <Footer />
@@ -151,7 +135,7 @@ export const getStaticProps = async ({ params }) => {
 
   return {
     props: { projectJSON, usersJSON },
-    revalidate: 5,
+    revalidate: 600,
   };
 };
 

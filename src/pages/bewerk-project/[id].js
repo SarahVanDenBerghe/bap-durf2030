@@ -30,7 +30,7 @@ const EditProject = observer(({ query }) => {
           setState(STATE_DOES_NOT_EXIST);
           return;
         }
-        resolvedProject.getAllDynamicContent();
+        !resolvedProject.containsAllData && resolvedProject.getAllDynamicContent();
         resolvedProject.getOwners();
         setState(STATE_FULLY_LOADED);
         setProject(resolvedProject);

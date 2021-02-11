@@ -62,9 +62,24 @@
 .masonry {
   grid-column: span 12;
   display: flex;
+  z-index: 5;
+
+  .column {
+    z-index: 5;
+  }
 
   .column:first-of-type {
     margin-right: $grid-gap;
+  }
+
+  .empty__state {
+    img {
+      transform: translateX(55%);
+    }
+
+    p {
+      transform: translateX(75%);
+    }
   }
 }
 
@@ -80,6 +95,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  img {
+    object-fit: contain;
+  }
 
   p {
     @include title-three;

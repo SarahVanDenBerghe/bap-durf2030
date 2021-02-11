@@ -131,6 +131,8 @@ const EditRequirements = observer(({ project }) => {
                 <EditItemIcons text="vrijwilliger" />
               </div>
               <FormFieldAddItem
+                completeOption
+                setComplete={handleCompleteItem}
                 name="services"
                 options={SERVICETYPES}
                 textRow

@@ -129,7 +129,7 @@ class ProjectStore {
           timestamp: getCurrenTimeStamp(),
           read: false,
           info: {
-            project: { id: projectId, title: project.title },
+            project: { id: project.id, title: project.title },
             user: { name: durver.user.name, avatar: durver.user.avatar },
             offers: offerTypes,
           },

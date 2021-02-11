@@ -59,7 +59,11 @@ const Notification = ({ notification }) => {
         <img height="35px" width="35px" src={getImage()} />
         <div className={styles.text}>
           {getText()}
-          <p className={styles.date}>{getReadableDate(notification.timestamp)}</p>
+          <p className={styles.date}>
+            {typeof notification.timestamp === 'string'
+              ? notification.timestamp
+              : getReadableDate(notification.timestamp)}
+          </p>
         </div>
       </a>
     </Link>

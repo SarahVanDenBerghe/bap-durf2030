@@ -1,5 +1,5 @@
 import { useStores } from '../../../hooks/useStores';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import styles from './Settings.module.scss';
 import Sidebar from '../../../components/Admin/Sidebar/Sidebar';
@@ -9,18 +9,39 @@ const Settings = observer(() => {
   const { userStore } = useStores();
   const [email, setEmail] = useState('');
   const [error, setError] = useState(' ');
+  const [admins, setAdmins] = useState([]);
 
-  userStore.loadAllUsers();
-  let adminsArr = [];
+  const getAdmins = () => {
+    let adminsArr = [];
+    userStore.users.forEach((user) => {
+      if (user.admin === true) {
+        adminsArr.push(user);
+      }
+    });
+    setAdmins(adminsArr);
+  };
 
-  userStore.users.map((user) => {
-    if (user.admin === true) {
-      adminsArr.push(user);
+  useEffect(() => {
+    if (userStore.users.length === 0) {
+      userStore.loadAllUsers().then(() => {
+        getAdmins();
+      });
+    } else {
+      getAdmins();
     }
-  });
+  }, [userStore.users]);
 
   const handleDeleteAdmin = (user) => {
     userStore.updateAdmin(false, user);
+    let updatedAdmins = [];
+
+    admins.forEach((admin) => {
+      if (admin.email !== user.email) {
+        updatedAdmins.push(admin);
+      }
+    });
+
+    setAdmins(updatedAdmins);
   };
 
   const handleSubmit = async (e) => {
@@ -28,6 +49,7 @@ const Settings = observer(() => {
     const user = userStore.users.find((user) => user.email === email);
     if (user) {
       userStore.updateAdmin(true, user);
+      setAdmins([user, ...admins]);
       const err = '';
       setError(err);
     } else {
@@ -50,7 +72,7 @@ const Settings = observer(() => {
           <section className={styles.admins__list}>
             <h2 className={styles.subtitle}>Alle admins</h2>
             <div className={styles.users}>
-              {adminsArr.map((user) => (
+              {admins.map((user) => (
                 <div key={user.id} className={styles.user}>
                   <div className={styles.user__info}>
                     <img className={styles.image} src={user.avatar} alt="profile picture of user" />

@@ -45,6 +45,10 @@
       font-weight: 400;
       font-size: 2rem;
       padding: 0 0.5rem;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
@@ -110,5 +114,9 @@
   img {
     height: 1.8rem;
     margin: 0 1rem;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

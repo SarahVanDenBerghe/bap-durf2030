@@ -41,14 +41,10 @@ const TabOverview = observer(({ project }) => {
             <h3 className={styles.subtitle}>Controleer het project</h3>
             <div className={styles.section__status}>
               <p className={styles.descriptionn}>
-                Kijk het project na en check of er geen ongepast taalgebruik
-                gebruikt is, alvoorens het project live op het platform te
-                zetten.
+                Kijk het project na en check of er geen ongepast taalgebruik gebruikt is, alvoorens het project live op
+                het platform te zetten.
               </p>
-              <Button
-                text="Zet project live"
-                onClick={() => handleChangeState(1)}
-              />
+              <Button text="Zet project live" onClick={() => handleChangeState(1)} />
             </div>
           </SectionPart>
         )}
@@ -57,14 +53,10 @@ const TabOverview = observer(({ project }) => {
             <h3 className={styles.subtitle}>Keur het project goed</h3>
             <div className={styles.section__status}>
               <p className={styles.descriptionn}>
-                Voldoet het project aan de vooropgestelde critearia van
-                DURF2030? Geef het project de goedkeuring om naar de
-                crowdfunding fase over te gaan.
+                Voldoet het project aan de vooropgestelde critearia van DURF2030? Geef het project de goedkeuring om
+                naar de crowdfunding fase over te gaan.
               </p>
-              <Button
-                text="Zet crowdfunding aan"
-                onClick={() => handleChangeState(2)}
-              />
+              <Button text="Zet crowdfunding aan" onClick={() => handleChangeState(2)} />
             </div>
           </SectionPart>
         )}
@@ -81,11 +73,7 @@ const TabOverview = observer(({ project }) => {
         <SectionPart title="Foto">
           <h3 className={styles.subtitle}>Header</h3>
           {project.image.url ? (
-            <img
-              className={styles.image}
-              src={image}
-              alt="project header image"
-            />
+            <img className={styles.image} src={image} alt="project header image" />
           ) : (
             <p>Geen headerbeeld upgeload</p>
           )}
@@ -96,8 +84,10 @@ const TabOverview = observer(({ project }) => {
               <h3 className={styles.subtitle}>Thema's</h3>
               {themes.length != 0 ? (
                 <>
-                  {themes.map((tag) => (
-                    <span className={styles.tag}>{tag}</span>
+                  {themes.map((tag, i) => (
+                    <span key={i} className={styles.tag}>
+                      {tag}
+                    </span>
                   ))}
                 </>
               ) : (
@@ -108,8 +98,10 @@ const TabOverview = observer(({ project }) => {
               <h3 className={styles.subtitle}>Categoriënen</h3>
               {categories.length != 0 ? (
                 <>
-                  {categories.map((tag) => (
-                    <span className={styles.tag}>{tag}</span>
+                  {categories.map((tag, i) => (
+                    <span key={i} className={styles.tag}>
+                      {tag}
+                    </span>
                   ))}
                 </>
               ) : (

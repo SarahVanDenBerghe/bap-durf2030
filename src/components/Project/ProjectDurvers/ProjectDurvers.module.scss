@@ -13,6 +13,19 @@ $spacing-top: 3rem;
     .title {
       @include title-one;
     }
+
+    > div {
+      display: flex;
+      align-items: center;
+
+      & h2 {
+        margin-right: 2rem;
+      }
+
+      .badge {
+        transform: translateY(-1.2rem);
+      }
+    }
   }
 
   > div:last-of-type {

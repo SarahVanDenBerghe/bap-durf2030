@@ -44,7 +44,9 @@ const ProjectCard = observer(({ project }) => {
 
         <div className={styles.content}>
           <div className={styles.content__wrapper}>
-            <p className={styles.date}>{project.timestamp}</p>
+            <p className={styles.date}>
+              {typeof project.timestamp === 'string' ? project.timestamp : project.getReadableDate(project.timestamp)}
+            </p>
             <h3 className={styles.title}>{project.title}</h3>
             <div className={styles.intro}>
               <LinesEllipsis text={project.intro} maxLine="3" ellipsis="..." trimRight basedOn="letters" />

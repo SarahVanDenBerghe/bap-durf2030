@@ -17,6 +17,9 @@ const RegisterForm = () => {
   const router = useRouter();
 
   const handleSubmit = async (values) => {
+    console.log(values);
+    console.log(password);
+
     const user = new User({
       name: values.name,
       store: userStore,
@@ -25,6 +28,8 @@ const RegisterForm = () => {
       admin: false,
       organisation: values.organisation ?? 'individu',
     });
+
+    console.log(user);
 
     const result = await uiStore.registerUser(user);
     if (result.uid) {
