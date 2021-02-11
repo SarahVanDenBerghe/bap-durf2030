@@ -179,7 +179,7 @@ const Projects = ({ projectsJSON }) => {
                     })
                   ) : (
                     <div className={styles.empty__state}>
-                      <img src="/vergrootglas.png" alt="empty state" width="600" height="300" />
+                      <img src="/vergrootglas.png" alt="empty state" width="400" height="300" />
                       <p>Sorry, er zijn geen project gevonden</p>
                     </div>
                   )}
@@ -220,12 +220,7 @@ const Projects = ({ projectsJSON }) => {
                     })
                   ) : (
                     <div className={styles.empty__state}>
-                      <img
-                        src="/vergrootglas.png"
-                        alt="empty state"
-                        width="1000"
-                        height="300"
-                      />
+                      <img src="/vergrootglas.png" alt="empty state" width="400" height="300" />
                       <p>Sorry, er zijn geen project gevonden</p>
                     </div>
                   )}

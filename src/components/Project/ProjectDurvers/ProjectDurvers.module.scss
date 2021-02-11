@@ -12,6 +12,8 @@ $spacing-top: 3rem;
 
     .title {
       @include title-one;
+      display: flex;
+      align-items: center;
     }
   }
 

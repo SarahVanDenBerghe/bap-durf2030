@@ -66,6 +66,16 @@
   .column:first-of-type {
     margin-right: $grid-gap;
   }
+
+  .empty__state {
+    img {
+      transform: translateX(55%);
+    }
+
+    p {
+      transform: translateX(75%);
+    }
+  }
 }
 
 .title {
@@ -80,6 +90,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  img {
+    object-fit: contain;
+  }
 
   p {
     @include title-three;
