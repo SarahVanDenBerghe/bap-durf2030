@@ -4,7 +4,6 @@ import styles from './OwnAwards.module.scss';
 
 const OwnAwards = observer(({ projects }) => {
   const { uiStore } = useStores();
-  console.log(projects);
 
   return (
     <>
