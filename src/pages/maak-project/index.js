@@ -105,6 +105,28 @@ const CreateProject = observer(() => {
       },
       projectId: projectId,
     });
+
+    // Hardcoded build hook
+    var url = 'https://api.vercel.com/v1/integrations/deploy/prj_9FzkV3G1nYbDhZfUSbomI1uIi3jA/qlsToVUcvk';
+
+    fetch(url, {
+      headers: {
+        dataType: 'json',
+        'content-type': 'application/json',
+      },
+      method: 'POST',
+      redirect: 'follow',
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.text());
+        } else {
+          throw new Error('Something went wrong on api server!');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const getButtonVariant = () => {
