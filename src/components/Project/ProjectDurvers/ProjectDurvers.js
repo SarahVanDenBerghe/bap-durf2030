@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite';
-import { useState, useEffect } from 'react';
 import styles from './ProjectDurvers.module.scss';
-import { Button } from '../../UI';
+import { Button, Badge } from '../../UI';
 import { ProjectHelp } from '../index';
 
 const ProjectDurvers = observer(({ project }) => {
@@ -9,8 +8,13 @@ const ProjectDurvers = observer(({ project }) => {
     <>
       <article className={styles.durvers}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Alle durvers ({project.durvers.length})</h2>
-          <Button text={'Wordt durver'} />
+          <div>
+            <h2 className={styles.title}>Alle durvers</h2>
+            <div className={styles.badge}>
+              <Badge text={project.durvers.length} />
+            </div>
+          </div>
+          <ProjectHelp project={project} text="Wordt durver" />
         </div>
 
         <div>

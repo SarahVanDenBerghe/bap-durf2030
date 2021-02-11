@@ -1,13 +1,6 @@
 import styles from './ProjectContent.module.scss';
-import {
-  ProjectDescription,
-  ProjectRequirements,
-  ProjectDurvers,
-  ProjectShare,
-  ProjectUpdates,
-} from '../../Project';
+import { ProjectDescription, ProjectRequirements, ProjectDurvers, ProjectShare, ProjectUpdates } from '../../Project';
 import { Container } from '../../Layout';
-import { useState } from 'react';
 import { TabPanel, AppBar, TabSideElement, Badge } from '../../UI';
 import Tab from '@material-ui/core/Tab';
 
@@ -38,7 +31,7 @@ const ProjectContent = ({ project, users, tab, setTab }) => {
         </div>
       </TabPanel>
       <TabPanel className={styles.panel} value={tab} index={1}>
-        <div className={project.updates.length > 0 && styles.letters}>
+        <div className={project.updates.length > 0 ? styles.letters : ''}>
           <Container>
             <ProjectUpdates updates={project.updates} />
           </Container>
@@ -52,7 +45,7 @@ const ProjectContent = ({ project, users, tab, setTab }) => {
         </div>
       </TabPanel>
       <TabPanel className={styles.panel} value={tab} index={3}>
-        <div className={project.durvers.length > 0 && styles.letters}>
+        <div className={project.durvers.length > 0 ? styles.letters : ''}>
           <Container>
             <ProjectDurvers project={project} />
           </Container>

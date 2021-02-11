@@ -23,7 +23,9 @@ const FormFieldAddUser = (props) => {
       setOwners(defaultValue);
     }
 
-    userStore.loadAllUsers();
+    if (userStore.users.length === 0) {
+      userStore.loadAllUsers();
+    }
   }, []);
 
   useEffect(() => {

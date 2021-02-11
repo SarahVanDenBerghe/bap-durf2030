@@ -15,16 +15,14 @@ const EditOfferList = ({ offers, project }) => {
               <div className={styles.text}>
                 <p>{offer.durver.name}</p>
                 <p className={styles.date}>
-                  {project.getReadableDate(offer.timestamp)}
+                  {typeof offer.timestamp === 'string' ? offer.timestamp : project.getReadableDate(offer.timestamp)}
                 </p>
               </div>
             </div>
             <ul>
               {offer.list.map((item, i) => (
                 <li key={i}>
-                  {item.type === 'material' && (
-                    <span className={styles.count}>{item.count}</span>
-                  )}
+                  {item.type === 'material' && <span className={styles.count}>{item.count}</span>}
 
                   {item.name}
                 </li>

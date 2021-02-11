@@ -439,9 +439,9 @@ const projectConverter = {
       state: project.state,
       timestamp: project.timestamp,
       image: {
-        enabled: project.image.enabled,
-        name: project.image.name,
-        url: project.image.url,
+        enabled: project.image.enabled ?? false,
+        name: project.image.name ?? '',
+        url: project.image.url ?? '',
       },
     };
   },

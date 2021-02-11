@@ -41,7 +41,9 @@ const ProjectDescription = observer(({ project, users }) => {
           <ProjectHelp text={'Ik durf mee te helpen'} project={project} />
           <div>
             <ProjectShare />
-            <ProjectLikes project={project} />
+            <div className={styles.likes}>
+              <ProjectLikes project={project} />
+            </div>
           </div>
         </div>
       </article>
