@@ -106,12 +106,11 @@ const CreateProject = observer(() => {
       projectId: projectId,
     });
 
-    // Hardcoded build hook
+    // Build hook
     var url = 'https://api.vercel.com/v1/integrations/deploy/prj_9FzkV3G1nYbDhZfUSbomI1uIi3jA/qlsToVUcvk';
 
     fetch(url, {
       headers: {
-        dataType: 'json',
         'content-type': 'application/json',
       },
       method: 'POST',
