@@ -94,6 +94,9 @@ const theme = createMuiTheme({
       notchedOutline: {
         borderColor: '#e1e2e7',
       },
+      inputMultiline: {
+        lineHeight: '1.7 !important',
+      },
     },
     MuiInputLabel: {
       root: {

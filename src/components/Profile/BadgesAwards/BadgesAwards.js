@@ -7,9 +7,7 @@ const BadgesAwards = ({ projects }) => {
   const { uiStore } = useStores();
 
   const awards = AWARDS.map((award) => {
-    const earnedAward = uiStore.currentUser.awards.find(
-      (userAward) => award.name === userAward.name
-    );
+    const earnedAward = uiStore.currentUser.awards.find((userAward) => award.name === userAward.name);
     if (earnedAward) {
       award.earned = true;
     } else {
@@ -28,57 +26,27 @@ const BadgesAwards = ({ projects }) => {
               <h2 className={styles.subtitle}>Badges</h2>
               <div className={styles.list}>
                 <div className={styles.list__item}>
-                  <img
-                    className={styles.icon}
-                    src="/badges-awards/c2.png"
-                    alt="badge"
-                    width="80"
-                    height="80"
-                  />
+                  <img className={styles.icon} src="/badges-awards/c2.png" alt="badge" width="80" height="80" />
                   <span>Chatter - level 1</span>
                 </div>
-                {projects.length > 5 ? (
+                {projects.length > 4 ? (
                   <div className={`${styles.list__item} ${styles.earned}`}>
-                    <img
-                      className={styles.icon}
-                      src="/badges-awards/h2.png"
-                      alt="icon"
-                      width="80"
-                      height="80"
-                    />
+                    <img className={styles.icon} src="/badges-awards/h2.png" alt="icon" width="80" height="80" />
                     <span>Liker - level 2</span>
                   </div>
-                ) : projects.length > 1 ? (
+                ) : projects.length > 0 ? (
                   <div className={`${styles.list__item} ${styles.earned}`}>
-                    <img
-                      className={styles.icon}
-                      src="/badges-awards/h1.png"
-                      alt="icon"
-                      width="80"
-                      height="80"
-                    />
+                    <img className={styles.icon} src="/badges-awards/h1.png" alt="icon" width="80" height="80" />
                     <span>Liker - level 1</span>
                   </div>
                 ) : (
                   <div className={styles.list__item}>
-                    <img
-                      className={styles.icon}
-                      src="/badges-awards/h1.png"
-                      alt="icon"
-                      width="80"
-                      height="80"
-                    />
+                    <img className={styles.icon} src="/badges-awards/h1.png" alt="icon" width="80" height="80" />
                     <span>Liker - level 1</span>
                   </div>
                 )}
                 <div className={styles.list__item}>
-                  <img
-                    className={styles.icon}
-                    src="/badges-awards/l1.png"
-                    alt="badge"
-                    width="80"
-                    height="80"
-                  />
+                  <img className={styles.icon} src="/badges-awards/l1.png" alt="badge" width="80" height="80" />
                   <span>Uitvinder - level 1</span>
                 </div>
               </div>
@@ -87,19 +55,8 @@ const BadgesAwards = ({ projects }) => {
               <h2 className={styles.subtitle}>Awards</h2>
               <div className={styles.list}>
                 {awards.map((award, i) => (
-                  <div
-                    key={i}
-                    className={`${styles.list__item} ${
-                      award.earned && styles.earned
-                    }`}
-                  >
-                    <img
-                      className={styles.icon}
-                      src={award.img}
-                      alt="award"
-                      width="80"
-                      height="80"
-                    />
+                  <div key={i} className={`${styles.list__item} ${award.earned && styles.earned}`}>
+                    <img className={styles.icon} src={award.img} alt="award" width="80" height="80" />
                     <span>{award.name}</span>
                   </div>
                 ))}

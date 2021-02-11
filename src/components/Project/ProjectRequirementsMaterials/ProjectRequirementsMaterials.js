@@ -141,7 +141,7 @@ const ProjectRequirementsMaterials = ({ project, progress }) => {
               </div>
             </div>
             <div className={styles.footer}>
-              <ProjectHelp text={'Hulp aanbieden'} project={project} />
+              {project.state !== 4 && <ProjectHelp text={'Hulp aanbieden'} project={project} />}
             </div>
           </div>
         </Container>

@@ -14,13 +14,7 @@ const OwnAwards = observer(({ projects }) => {
             <div className={styles.list}>
               {uiStore.currentUser.awards.map((award) => (
                 <div key={award.name} className={styles.list__item}>
-                  <img
-                    className={styles.icon}
-                    src={award.img}
-                    alt="icon"
-                    width="80"
-                    height="80"
-                  />
+                  <img className={styles.icon} src={award.img} alt="icon" width="80" height="80" />
                   <span>{award.name}</span>
                 </div>
               ))}
@@ -31,26 +25,14 @@ const OwnAwards = observer(({ projects }) => {
         <div className={styles.badges}>
           <h1 className={styles.title}>Behaalde Badges</h1>
           <div className={styles.list}>
-            {projects.length > 5 ? (
+            {projects.length > 4 ? (
               <div className={styles.list__item}>
-                <img
-                  className={styles.icon}
-                  src="/badges-awards/h2.png"
-                  alt="icon"
-                  width="80"
-                  height="80"
-                />
+                <img className={styles.icon} src="/badges-awards/h2.png" alt="icon" width="80" height="80" />
                 <span>Liker - level 2</span>
               </div>
-            ) : projects.length > 1 ? (
+            ) : projects.length > 0 ? (
               <div className={styles.list__item}>
-                <img
-                  className={styles.icon}
-                  src="/badges-awards/h1.png"
-                  alt="icon"
-                  width="80"
-                  height="80"
-                />
+                <img className={styles.icon} src="/badges-awards/h1.png" alt="icon" width="80" height="80" />
                 <span>Liker - level 1</span>
               </div>
             ) : (

@@ -11,18 +11,6 @@ class UiStore {
     this.userProjects = [];
     this.notifications = [];
 
-    // {
-    //   type: 'badge',
-    //   timestamp: '09:11',
-    //   read: false,
-    //   info: {
-    //     badge: 'liker',
-    //     image: '/badges-awards/l1.png',
-    //     level: 2,
-    //     tag: 'Dank je wel om actief andere projecten te steunen.',
-    //   },
-    // },
-
     this.userLikedProjects = [];
     this.authService = new AuthService(this.rootStore.firebase, this.onAuthStateChanged);
     this.userService = new UserService(this.rootStore.firebase);

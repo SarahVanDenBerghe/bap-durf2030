@@ -38,7 +38,7 @@ const ProjectDescription = observer(({ project, users }) => {
         )}
         <ParsedRichText html={project.description} />
         <div className={styles.buttons}>
-          <ProjectHelp text={'Ik durf mee te helpen'} project={project} />
+          {project.state !== 4 && <ProjectHelp text={'Ik durf mee te helpen'} project={project} />}
           <div>
             <ProjectShare />
             <div className={styles.likes}>
