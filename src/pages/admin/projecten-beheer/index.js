@@ -22,12 +22,16 @@ const ProjectManagement = observer(() => {
     if (projectStore.projects.length === 0) {
       projectStore.loadAllProjects().then(() => setProjects(projectStore.projects));
     } else {
-      setProjects(projectStore.projects);
+      const projectsArr = [];
+      projectStore.projects.forEach((project) => {
+        !projectsArr.find((existingProject) => existingProject.id === project.id) && projectsArr.push(project);
+      });
+      setProjects(projectsArr);
     }
   }, [projectStore, projectStore.projects]);
 
   useEffect(() => {
-    if (projects.length > 0) {
+    if (projects.length > 0 && liveProjects.length === 0 && finishedProjects.length === 0 && newProjects.length === 0) {
       let liveArr = [];
       let finishedArr = [];
       let newArr = [];
@@ -47,12 +51,15 @@ const ProjectManagement = observer(() => {
         project.state !== 0 &&
           project.state !== 4 &&
           !liveArr.find((existingProject) => existingProject.id === project.id) &&
+          !liveProjects.find((existingProject) => existingProject.id === project.id) &&
           liveArr.push(projectObj);
         project.state === 4 &&
           !finishedArr.find((existingProject) => existingProject.id === project.id) &&
+          !finishedProjects.find((existingProject) => existingProject.id === project.id) &&
           finishedArr.push(projectObj);
         project.state === 0 &&
           !newArr.find((existingProject) => existingProject.id === project.id) &&
+          !newProjects.find((existingProject) => existingProject.id === project.id) &&
           newArr.push(projectObj);
       });
 

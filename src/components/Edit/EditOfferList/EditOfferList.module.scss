@@ -17,6 +17,10 @@
       margin-bottom: 0;
     }
 
+    & img:hover {
+      cursor: pointer;
+    }
+
     &:not(:last-of-type)::after {
       position: absolute;
       content: '';

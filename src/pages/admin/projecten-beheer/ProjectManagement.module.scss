@@ -62,6 +62,10 @@ $border-radius: 0.5rem;
   align-items: center;
   font-size: 1.4rem;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   .number {
     color: $green;
     padding: 0.5rem 1rem;

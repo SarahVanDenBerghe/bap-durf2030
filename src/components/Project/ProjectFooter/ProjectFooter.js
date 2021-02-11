@@ -21,7 +21,9 @@ const ProjectFooter = observer(({ project }) => {
             )}
             <p>Stuur een mail naar het contactpersoon van dit project</p>
           </div>
-          <p className={styles.date}>{project.timestamp}</p>
+          <p className={styles.date}>
+            {typeof project.timestamp === 'string' ? project.timestamp : project.getReadableDate(project.timestamp)}
+          </p>
         </Container>
       </article>
     </>

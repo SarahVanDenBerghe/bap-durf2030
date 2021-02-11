@@ -13,13 +13,13 @@ const ProjectRequirementsCard = ({ project }) => {
             <ProjectIcons project={project} />
             <h2 className={styles.title}>{project.title}</h2>
             <ul>
-              {project.services.map((service) => (
-                <li>{service.name}</li>
+              {project.services.map((service, i) => (
+                <li key={i}>{service.name}</li>
               ))}
             </ul>
             <ul>
-              {project.materials.map((material) => (
-                <li>{material.name}</li>
+              {project.materials.map((material, i) => (
+                <li key={i}>{material.name}</li>
               ))}
             </ul>
           </div>

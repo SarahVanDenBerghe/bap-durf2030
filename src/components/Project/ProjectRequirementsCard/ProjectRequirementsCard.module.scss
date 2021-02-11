@@ -4,8 +4,10 @@ $border-radius: 0.5rem;
 .card__wrapper {
   text-decoration: none;
   color: $blue-dark;
+  z-index: 5;
 
   .card {
+    z-index: 5;
     .text {
       position: relative;
       padding: 2rem;
