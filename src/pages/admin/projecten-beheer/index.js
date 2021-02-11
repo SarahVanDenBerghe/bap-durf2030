@@ -12,72 +12,55 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 const ProjectManagement = observer(() => {
   const { projectStore } = useStores();
   const [projects, setProjects] = useState([]);
-  const projectAmount = projectStore.projects.length;
+  const [liveProjects, setLiveProjects] = useState([]);
+  const [finishedProjects, setFinishedProjects] = useState([]);
+  const [newProjects, setNewProjects] = useState([]);
+
+  let id = 0;
 
   useEffect(() => {
-    //console.log('test admin');
-    ////console.log(projectStore.projects);
-
-    const loadProjects = async () => {
-      ///projectStore.projects = [];
-      await projectStore.loadAllProjects();
-
+    if (projectStore.projects.length === 0) {
+      projectStore.loadAllProjects().then(() => setProjects(projectStore.projects));
+    } else {
       setProjects(projectStore.projects);
-    };
-    loadProjects();
-
-    console.log(projects);
-
-    //console.log('test after load');
-    //console.log(projectStore.projects);
-  }, [projectStore, setProjects]);
-
-  let lopendList = [];
-  let doneList = [];
-  let newList = [];
-  let id = 1;
-
-  // LOPEND
-  projects.map((project) => {
-    if (project.state != 0 && project.state != 4) {
-      //const timestamp = project.getReadableDate(project.timestamp);
-      lopendList.push({
-        id: id,
-        projectName: [project.title, project.id],
-        creationDate: 'll',
-        projectContact: project.contact,
-      });
-      id++;
     }
-  });
+  }, [projectStore, projectStore.projects]);
 
-  // AFGEROND
-  projectStore.projects.map((project) => {
-    if (project.state === 4) {
-      //const timestamp = project.getReadableDate(project.timestamp);
-      doneList.push({
-        id: id,
-        projectName: [project.title, project.id],
-        creationDate: 'rrr',
-        projectContact: project.contact,
-      });
-      id++;
-    }
-  });
+  useEffect(() => {
+    if (projects.length > 0) {
+      let liveArr = [];
+      let finishedArr = [];
+      let newArr = [];
 
-  // NIEUW
-  projectStore.projects.map((project) => {
-    if (project.state === 0) {
-      //const timestamp = project.getReadableDate(project.timestamp);
-      newList.push({
-        id: id,
-        projectName: [project.title, project.id],
-        creationDate: 'ff',
-        projectContact: project.contact,
+      projects.forEach((project) => {
+        id++;
+        const timestamp =
+          typeof project.timestamp === 'string' ? project.timestamp : project.getReadableDate(project.timestamp);
+
+        let projectObj = {
+          id: id,
+          projectName: [project.title, project.id],
+          creationDate: timestamp,
+          projectContact: project.contact,
+        };
+
+        project.state !== 0 &&
+          project.state !== 4 &&
+          !liveArr.find((existingProject) => existingProject.id === project.id) &&
+          liveArr.push(projectObj);
+        project.state === 4 &&
+          !finishedArr.find((existingProject) => existingProject.id === project.id) &&
+          finishedArr.push(projectObj);
+        project.state === 0 &&
+          !newArr.find((existingProject) => existingProject.id === project.id) &&
+          newArr.push(projectObj);
       });
-      id++;
+
+      setNewProjects(newArr);
+      setLiveProjects(liveArr);
+      setFinishedProjects(finishedArr);
     }
-  });
+  }, [projects]);
 
   const columns = [
     { field: 'id', headerName: 'id', width: 50 },
@@ -101,13 +84,7 @@ const ProjectManagement = observer(() => {
       sortable: false,
       renderCell: (params) => (
         <a href={`mailto:${params.value}`}>
-          <img
-            className={styles.icon}
-            src="/icons/email.svg"
-            alt="email icon"
-            width="25"
-            height="25"
-          />
+          <img className={styles.icon} src="/icons/email.svg" alt="email icon" width="25" height="25" />
         </a>
       ),
     },
@@ -121,7 +98,7 @@ const ProjectManagement = observer(() => {
           <div className={styles.header}>
             <div className={styles.header__left}>
               <h1 className={styles.title}>Projectenbeheer</h1>
-              <span>{projectAmount} resultaten</span>
+              <span>{projects.length} resultaten</span>
             </div>
             <Button text={'Filteren'} />
           </div>
@@ -134,29 +111,29 @@ const ProjectManagement = observer(() => {
             <TabList className={styles.tabs}>
               <Tab className={styles.tab}>
                 <p>Lopend</p>
-                <p className={styles.number}>{lopendList.length}</p>
+                <p className={styles.number}>{liveProjects.length}</p>
               </Tab>
               <Tab className={styles.tab}>
                 <p>Afgerond</p>
-                <p className={styles.number}>{doneList.length}</p>
+                <p className={styles.number}>{finishedProjects.length}</p>
               </Tab>
               <Tab className={styles.tab}>
                 <p>Nieuw</p>
-                <p className={styles.number}>{newList.length}</p>
+                <p className={styles.number}>{newProjects.length}</p>
               </Tab>
             </TabList>
 
             <div>
               <TabPanel>
-                <DataGrid rows={lopendList} columns={columns} pageSize={10} />
+                <DataGrid rows={liveProjects} columns={columns} pageSize={10} />
               </TabPanel>
 
               <TabPanel>
-                <DataGrid rows={doneList} columns={columns} pageSize={10} />
+                <DataGrid rows={finishedProjects} columns={columns} pageSize={10} />
               </TabPanel>
 
               <TabPanel>
-                <DataGrid rows={newList} columns={columns} pageSize={10} />
+                <DataGrid rows={newProjects} columns={columns} pageSize={10} />
               </TabPanel>
             </div>
           </Tabs>

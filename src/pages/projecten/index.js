@@ -33,6 +33,7 @@ const Projects = ({ projectsJSON }) => {
       // Adding dynamic content to pre-rendered SSR data
       project.getLikes();
       project.getRequirementsInfo();
+      project.getRequirementsList();
       project.getDurvers();
       return project;
     });
