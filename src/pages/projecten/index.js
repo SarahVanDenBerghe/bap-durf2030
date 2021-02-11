@@ -251,7 +251,7 @@ export const getStaticProps = async (context) => {
 
   return {
     props: { projectsJSON },
-    revalidate: 600,
+    revalidate: 5,
   };
 };
 

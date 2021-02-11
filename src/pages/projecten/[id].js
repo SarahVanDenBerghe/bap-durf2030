@@ -135,7 +135,7 @@ export const getStaticProps = async ({ params }) => {
 
   return {
     props: { projectJSON, usersJSON },
-    revalidate: 600,
+    revalidate: 5,
   };
 };
 
