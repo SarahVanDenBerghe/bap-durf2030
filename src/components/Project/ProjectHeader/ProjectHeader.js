@@ -149,7 +149,7 @@ const ProjectHeader = observer(({ project, projectOwner, setTab }) => {
               )}
             </div>
             <div className={styles.buttons}>
-              <ProjectHelp text={'Ik durf mee te helpen'} project={project} />
+              {project.state !== 4 && <ProjectHelp text={'Ik durf mee te helpen'} project={project} />}
               <div className={styles.interact}>
                 <ProjectLikes project={project} />
                 {project.durvers.length != 0 && <ProjectHelpers project={project} />}

@@ -45,7 +45,7 @@ const ProjectRequirements = ({ project }) => {
           <ProjectRequirementsFunding
             project={project}
             funding={fundingCount}
-            progress={fundingCount < project.FundingAmount ? (fundingCount / project.fundingAmount) * 100 : 100}
+            progress={(fundingCount / project.fundingAmount) * 100}
           />
         )}
 

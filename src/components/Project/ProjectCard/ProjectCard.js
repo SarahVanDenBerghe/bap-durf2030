@@ -33,9 +33,9 @@ const ProjectCard = observer(({ project }) => {
     <Link href={ROUTES.detail.to + project.id}>
       <a className={styles.card}>
         <div className={styles.thumbnail}>
-          <ProjectIcons project={project} />
+          {project.state !== 4 && <ProjectIcons project={project} />}
           <img className={styles.image} src={project.image.url} alt="project header image" />
-          {project.fundingRequired && project.state != 1 && (
+          {project.fundingRequired && project.state !== 1 && project.state !== 4 && (
             <div className={styles.progress}>
               <LinearProgress variant="determinate" value={fundingCount / 100} />
             </div>

@@ -22,10 +22,14 @@ const ProjectRequirementsFunding = ({ project, progress, funding }) => {
             </div>
             <p>{project.fundingDescription}</p>
             <div className={styles.footer}>
-              {project.state > 1 ? (
-                <ProjectHelp text={'Doneren'} project={project} />
+              {project.state !== 4 ? (
+                project.state > 1 ? (
+                  <ProjectHelp text={'Doneren'} project={project} />
+                ) : (
+                  <p className={styles.info}>Het is nog niet mogelijk om geld te doneren</p>
+                )
               ) : (
-                <p className={styles.info}>Het is nog niet mogelijk om geld te doneren</p>
+                ''
               )}
             </div>
           </div>
