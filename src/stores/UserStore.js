@@ -28,7 +28,9 @@ class UserStore {
   };
 
   validateUser = (user) => {
-    this.loadAllUsers();
+    if (this.users.length === 0) {
+      this.loadAllUsers();
+    }
     let checkUser = this.users.find((existingUser) => existingUser.email === user.email);
   };
 

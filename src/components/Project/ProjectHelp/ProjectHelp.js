@@ -32,7 +32,11 @@ const ProjectHelp = observer(({ project, text }) => {
 
   const getName = (id) => {
     const service = project.services.find((service) => service.id === id);
-    return service.name;
+    if (service) {
+      return service.name;
+    } else {
+      return 'undefined';
+    }
   };
 
   const handleSubmit = async (values) => {

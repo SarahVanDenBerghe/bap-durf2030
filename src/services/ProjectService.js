@@ -105,6 +105,7 @@ class ProjectService {
         userId: owner.id,
         name: owner.name,
         avatar: owner.avatar,
+        email: owner.email,
       });
     });
 
@@ -127,7 +128,7 @@ class ProjectService {
       .doc(projectId)
       .collection('owners')
       .doc(owner.id)
-      .set({ userId: owner.id, avatar: owner.avatar, name: owner.name });
+      .set({ userId: owner.id, avatar: owner.avatar, name: owner.name, email: owner.email });
   };
 
   updateProjectUpdates = (updates, projectId) => {

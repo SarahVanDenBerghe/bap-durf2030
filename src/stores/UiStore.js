@@ -49,17 +49,6 @@ class UiStore {
   addLikedProject = (project) => {
     project.timestamp = '';
     this.userLikedProjects.push(project);
-
-    // Create liker badges
-    // if (this.userLikedProjects.length > 4) {
-    //   let badges = [...this.currentUser.badges];
-    //   badges.push({ img: 'img url hier', name: 'Liker', level: 2 });
-    //   this.rootStore.userStore.updateBadges(badges, this.currentUser.email);
-    // } else if (this.userLikedProjects.length > 0) {
-    //   let badges = [...this.currentUser.badges];
-    //   badges.push({ img: 'img url hier', name: 'Liker', level: 1 });
-    //   this.rootStore.userStore.updateBadges(badges, this.currentUser.email);
-    // }
   };
 
   onAuthStateChanged = (user) => {
@@ -76,7 +65,9 @@ class UiStore {
     this.userService.getUserByEmail(email).then(
       action('fetchSuccess', (user) => {
         this.currentUser = user;
-        this.notifications = [...user.notifications];
+        if (this.currentUser) {
+          this.notifications = [...this.currentUser.notifications];
+        }
       })
     );
   };

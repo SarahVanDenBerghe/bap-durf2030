@@ -31,7 +31,13 @@ const ProjectComments = observer(({ project, comments }) => {
         {project.comments.length !== 0 ? (
           <div className={styles.comments__wrapper}>
             {project.comments.map((comment) => (
-              <ProjectComment key={comment.id} comment={comment} date={project.getReadableDate(comment.timestamp)} />
+              <ProjectComment
+                key={comment.id}
+                comment={comment}
+                date={
+                  typeof comment.timestamp === 'string' ? comment.timestamp : project.getReadableDate(comment.timestamp)
+                }
+              />
             ))}
           </div>
         ) : (

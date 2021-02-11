@@ -12,8 +12,8 @@ const TabOndersteuning = observer(({ project }) => {
               <h3 className={styles.subtitle}>Opsomming</h3>
               {project.services.length != 0 ? (
                 <>
-                  {project.services.map((service) => (
-                    <div className={styles.item}>
+                  {project.services.map((service, i) => (
+                    <div key={i} className={styles.item}>
                       <span className={styles.item__amount}>{service.amount}</span>
                       <span className={styles.item__name}>{service.name}</span>
                     </div>
@@ -39,8 +39,8 @@ const TabOndersteuning = observer(({ project }) => {
               <h3 className={styles.subtitle}>Opsomming</h3>
               {project.materials.length != 0 ? (
                 <>
-                  {project.materials.map((material) => (
-                    <div className={styles.item}>
+                  {project.materials.map((material, i) => (
+                    <div key={i} className={styles.item}>
                       <span className={styles.item__amount}>{material.amount}</span>
                       <span className={styles.item__name}>{material.name}</span>
                     </div>
